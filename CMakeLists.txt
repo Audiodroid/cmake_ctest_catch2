@@ -21,16 +21,4 @@ target_link_libraries(tests Catch2::Catch2)
 include(CTest)
 include(Catch)
 
-#--------------------------------------------------------------
-# !!! Any advice on this welcome !!!
-# The line below cannot be called on an Apple silicon machine
-# which makes ctest not able to discover the test
-# a) how can I NOT run this ONLY if it's a SILICON Apple
-# b) how can I just make it work for all systems?
-#--------------------------------------------------------------
-if (APPLE)
-    add_test(tests COMMAND tests)
-else
-    catch_discover_tests(tests)
-endif (NOT APPLE)
-
+add_test(tests COMMAND tests)

@@ -28,6 +28,9 @@ include(Catch)
 # a) how can I NOT run this ONLY if it's a SILICON Apple
 # b) how can I just make it work for all systems?
 #--------------------------------------------------------------
-if (NOT APPLE)
+if (APPLE)
+    add_test(tests COMMAND tests)
+else
     catch_discover_tests(tests)
 endif (NOT APPLE)
+

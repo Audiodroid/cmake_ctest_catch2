@@ -21,4 +21,4 @@ target_link_libraries(tests Catch2::Catch2)
 include(CTest)
 include(Catch)
 
-add_test(tests COMMAND tests)
+add_test(NAME CTestRunner COMMAND tests)

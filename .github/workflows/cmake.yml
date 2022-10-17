@@ -69,7 +69,7 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: ctest -C ${{env.BUILD_TYPE}}
 
-  e2e-test-macos:
+  e2e-macos:
 
     runs-on: ${{ matrix.os }}
     
@@ -83,7 +83,7 @@ jobs:
     - name: Test
       run: echo "e2e test soon to come"
 
-  e2e-test-linux:
+  e2e-linux:
 
     runs-on: ${{ matrix.os }}
     
@@ -97,7 +97,7 @@ jobs:
     - name: Test
       run: echo "e2e test soon to come"
 
-  e2e-test-windows:
+  e2e-win:
 
     runs-on: ${{ matrix.os }}
     

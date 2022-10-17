@@ -45,7 +45,9 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
-
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
     - name: Test
       working-directory: ${{github.workspace}}/build
      

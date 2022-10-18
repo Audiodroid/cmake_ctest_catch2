@@ -80,8 +80,8 @@ jobs:
         os: [macos-12, macos-11]
 
     steps:
-    - name: Test
-      run: echo "e2e test soon to come"
+    - name: Get python3 version
+      run: python3 --version
 
   e2e-linux:
 
@@ -94,8 +94,8 @@ jobs:
         os: [ubuntu-22.04]
 
     steps:
-    - name: Test
-      run: echo "e2e test soon to come"
+    - name: Get python3 version
+      run: python3 --version
 
   e2e-win:
 
@@ -108,5 +108,5 @@ jobs:
         os: [windows-2022, windows-2019]
 
     steps:
-    - name: Test
-      run: echo "e2e test soon to come"
+    - name: Get python3 version
+      run: python3 --version

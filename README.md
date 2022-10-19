@@ -6,6 +6,7 @@ rm -rf build Testing
 cmake -S . -B build -G Xcode
 cmake --build build
 ctest --test-dir ./build -V -C Debug --progress
+build/src/Debug/app
 
 ## todos
 * move file into subfolders

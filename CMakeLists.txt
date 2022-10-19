@@ -5,7 +5,10 @@ project(CMakeCTestCatch2Prj LANGUAGES CXX VERSION 0.0.1)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED true)
 
-add_executable(app main.cpp)
+#--------------------------------------------------------------
+# App
+#--------------------------------------------------------------
+add_subdirectory(src)
 
 #--------------------------------------------------------------
 # Tests

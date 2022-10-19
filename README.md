@@ -5,9 +5,10 @@ If you want to run through a similar process as the github-actions script use th
 rm -rf build Testing  
 cmake -S . -B build -G Xcode
 cmake --build build
-ctest --test-dir ./build -V
+ctest --test-dir ./build -V -C Debug
 
 ## todos
+* move file into subfolders
 * we will want to add the trompleil-mocking framework
 * (make a variant of this?) adding juce
 * (make a variant of this?) adding focusrite-e2e

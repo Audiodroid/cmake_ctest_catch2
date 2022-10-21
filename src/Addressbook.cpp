@@ -1,26 +1,31 @@
 
 #include "Addressbook.h"
 
-std::string Addressbook::getPhonenumberByName(const std::string& name) const
+Addressbook::Addressbook (const std::vector<std::shared_ptr<Person>>& persons)
+    : persons (persons)
 {
-    auto firstname = "Joe";
-    auto lastname1 = "Public";
-    auto lastname2 = "Private";
+
+}
+
+std::string Addressbook::getPhonenumberByName (const std::string& name) const
+{
+    std::vector<std::shared_ptr<Person>> filtered;
+    for (std::shared_ptr<Person> person : persons)
+    {
+        if(name.find (person->firstname) != std::string::npos)
+            filtered.push_back(person);
+    }
     
-    auto found = name.find(firstname);
-    if(found == std::string::npos)
+    std::vector<std::shared_ptr<Person>> match;
+    for (std::shared_ptr<Person> person : filtered)
+    {
+        if(name.find (person->lastname) != std::string::npos)
+            match.push_back (person);
+    }
+    
+    if(match.empty())
         return "";
     
-    auto found1 = name.find(lastname1);
-    auto found2 = name.find(lastname2);
-    if(found1 == std::string::npos &&
-        found2 == std::string::npos)
-        return "";
-    
-    if(found1 != std::string::npos)
-        return "0123456789";
-    
-    if(found2 != std::string::npos)
-        return "9876543210";
+    return match[0]->phonenumber;
 }
 

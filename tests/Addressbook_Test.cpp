@@ -2,17 +2,7 @@
 #include <string>
 
 #include "catch2/catch_all.hpp"
-
-struct Addressbook
-{
-    std::string getPhonenumberByName(const std::string& name)
-    {
-        if(name == "Joe Public")
-            return "0123456789";
-            
-        return "";
-    }
-};
+#include "Addressbook.h"
 
 TEST_CASE("getPhonenumberByName", "[Category]")
 {

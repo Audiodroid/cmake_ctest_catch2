@@ -2,7 +2,7 @@
 enable_testing()
 
 # These tests need their own main
-add_executable(tests Addressbook_Test.cpp test_main.cpp)
+add_executable(tests ../src/Addressbook.cpp Addressbook_Test.cpp test_main.cpp)
 
 target_link_libraries(tests Catch2::Catch2)
 

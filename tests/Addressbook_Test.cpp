@@ -2,7 +2,7 @@
 #include <string>
 
 #include "catch2/catch_all.hpp"
-#include "Addressbook.h"
+#include "../src/Addressbook.h"
 
 TEST_CASE("getPhonenumberByName", "[Category]")
 {
@@ -28,6 +28,18 @@ TEST_CASE("getPhonenumberByName", "[Category]")
         phonenumberExpected = "0123456789";
     }
 
+    SECTION("When name is in reverse, then returns phonenumber")
+    {
+        name = "Public, Joe";
+        phonenumberExpected = "0123456789";
+    }
+
+    SECTION("When lastname is different, then returns different phonenumber")
+    {
+        name = "Joe Private";
+        phonenumberExpected = "9876543210";
+    }
+    
     ///EXERCISE
     Addressbook addressbook;
     std::string phonenumberActual = addressbook.getPhonenumberByName (name);

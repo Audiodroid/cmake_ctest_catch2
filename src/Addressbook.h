@@ -26,6 +26,7 @@ class Loader
     virtual bool load(std::vector<std::shared_ptr<Person>>& persons)
     {
         ///TODO load from file or load from sqlite3 or the cloud or ....
+        return true;
     }
 };
 

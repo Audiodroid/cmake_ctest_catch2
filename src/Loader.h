@@ -17,8 +17,8 @@ public:
          
         while (ss.good()) {
             std::string substr;
-            getline(ss, substr, ',');
-            v.push_back(substr);
+            getline (ss, substr, ',');
+            v.push_back (substr);
         }
     }
     
@@ -26,10 +26,11 @@ public:
     {
         std::vector<std::string> v;
         
-        std::istringstream f(csv);
+        std::istringstream text (csv);
         std::string line;
-        while (std::getline (f, line)) {
+        while (std::getline (text, line)) {
             
+            v.clear();
             getCommaSeparatedStrings (line, v);
             
             std::shared_ptr<Person> person =
@@ -44,9 +45,9 @@ public:
 private:
     
     std::string csv =
-"marcel,roth,5424,\n\
-marco,ziemann,1215,\n\
-guenter,bracht,1219\n\
+"Marcel,Roth,5424,\n\
+Marco,Ziemann,1215,\n\
+Guenter,Bracht,1219\n\
 ";
 
 };

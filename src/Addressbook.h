@@ -13,8 +13,9 @@ class Addressbook
     
 public:
     Addressbook();
-    bool init(Loader& loader);
+    bool init (Loader& loader);
     std::string getPhonenumberByName (const std::string& name) const;
+    static std::string toLower (const std::string& str);
     
 private:
     std::vector<std::shared_ptr<Person>> persons;

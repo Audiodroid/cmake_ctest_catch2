@@ -12,46 +12,52 @@ using namespace trompeloeil;
 
 struct LoaderMock : Loader
 {
-    MAKE_MOCK1(load, bool (std::vector<std::shared_ptr<Person>>&), override);
+    MAKE_MOCK1 (load, bool (std::vector<std::shared_ptr<Person>>&), override);
 };
 
-TEST_CASE("getPhonenumberByName", "[Category]")
+TEST_CASE ("getPhonenumberByName", "[Category]")
 {
     auto name = "";
     auto phonenumberExpected = "";
     
-    ///OUTLINE
-    SECTION("When name is empty, then returns empty phonenumber")
+    ///outline
+    SECTION ("When name is empty, then returns empty phonenumber")
     {
         name = "";
         phonenumberExpected = "";
     }
 
-    SECTION("When name is unknown, then returns empty phonenumber")
+    SECTION ("When name is unknown, then returns empty phonenumber")
     {
         name = "Unknown Name";
         phonenumberExpected = "";
     }
     
-    SECTION("When name is known, then returns phonenumber")
+    SECTION ("When name is known, then returns phonenumber")
     {
         name = "Joe Public";
         phonenumberExpected = "0123456789";
     }
 
-    SECTION("When name is in reverse, then returns phonenumber")
+    SECTION ("When name is lowercase, then returns phonenumber")
+    {
+        name = "joe public";
+        phonenumberExpected = "0123456789";
+    }
+    
+    SECTION ("When name is in reverse, then returns phonenumber")
     {
         name = "Public, Joe";
         phonenumberExpected = "0123456789";
     }
 
-    SECTION("When firstname is different, then returns different phonenumber")
+    SECTION ("When firstname is different, then returns different phonenumber")
     {
         name = "Jane Public";
         phonenumberExpected = "1111111111";
     }
     
-    ///PREPARE
+    ///prepare
     Addressbook addressbook;
 
     std::vector<std::shared_ptr<Person>> persons;
@@ -68,13 +74,13 @@ TEST_CASE("getPhonenumberByName", "[Category]")
     
     LoaderMock loader;
     ALLOW_CALL (loader, load (_))
-        .SIDE_EFFECT(_1 = persons)
-        .RETURN(true);
+        .SIDE_EFFECT (_1 = persons)
+        .RETURN (true);
     
-    ///EXERCISE
+    ///exercise
     addressbook.init (loader);
     std::string phonenumberActual = addressbook.getPhonenumberByName (name);
     
-    ///EVALUTE
+    ///evaluate
     REQUIRE (phonenumberActual == phonenumberExpected);
 }

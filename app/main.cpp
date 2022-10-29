@@ -6,19 +6,24 @@
 #include "Person.h"
 #include "Loader.h"
 
-int main()
+int main (int argc, char **argv)
 {
-    std::cout << "Enter a first and last name without space e.g. joepublic: ";
-    std::string name;
-    std::cin  >> name;
-    
     Loader loader;
     Addressbook addressbook;
     if(! addressbook.init (loader))
         std::cout << "could not load addressbook!" << std::endl;
     
-    std::string phonenumber = addressbook.getPhonenumberByName (name);
-    std::cout << "phonenumber: " << phonenumber << std::endl;
+    std::string name;
+    while (true)
+    {
+        std::cout << "Enter a first and last name without space e.g. joepublic: ";
+        std::cin >> name;
+        if (name.find ("end") != std::string::npos)
+            return 0;
+        
+        auto phonenumber = addressbook.getPhonenumberByName (name);
+        std::cout << "phonenumber: " << phonenumber << std::endl;
+    }
     
     return 0;
 }

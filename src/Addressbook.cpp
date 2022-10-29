@@ -1,5 +1,7 @@
 
 #include "Addressbook.h"
+#include "Person.h"
+#include "Loader.h"
 
 Addressbook::Addressbook()
 {

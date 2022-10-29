@@ -4,7 +4,9 @@
 #include "catch2/catch_all.hpp"
 #include "trompeloeil.hpp"
 
-#include "../src/Addressbook.h"
+#include "Person.h"
+#include "Loader.h"
+#include "Addressbook.h"
 
 using namespace trompeloeil;
 

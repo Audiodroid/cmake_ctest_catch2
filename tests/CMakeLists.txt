@@ -9,7 +9,8 @@ target_link_libraries(tests
     trompeloeil::trompeloeil
 )
 
-include(CTest)
+# "enable_testing()" is sufficient no need for "#include CTest"
+#include(CTest)
 include(Catch)
 
 add_test(NAME CTestRunner COMMAND tests)

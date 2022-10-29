@@ -2,7 +2,16 @@
 #include <string>
 
 #include "catch2/catch_all.hpp"
+#include "trompeloeil.hpp"
+
 #include "../src/Addressbook.h"
+
+using namespace trompeloeil;
+
+struct LoaderMock : Loader
+{
+    MAKE_MOCK1(load, bool (std::vector<std::shared_ptr<Person>>&), override);
+};
 
 TEST_CASE("getPhonenumberByName", "[Category]")
 {
@@ -41,6 +50,8 @@ TEST_CASE("getPhonenumberByName", "[Category]")
     }
     
     ///PREPARE
+    Addressbook addressbook;
+
     std::vector<std::shared_ptr<Person>> persons;
     std::shared_ptr<Person> person;
     
@@ -53,8 +64,13 @@ TEST_CASE("getPhonenumberByName", "[Category]")
     person = std::make_shared<Person> ("Jane", "Public", "1111111111");
     persons.push_back (person);
     
+    LoaderMock loader;
+    ALLOW_CALL (loader, load (_))
+        .SIDE_EFFECT(_1 = persons)
+        .RETURN(true);
+    
     ///EXERCISE
-    Addressbook addressbook(persons);
+    addressbook.init (loader);
     std::string phonenumberActual = addressbook.getPhonenumberByName (name);
     
     ///EVALUTE

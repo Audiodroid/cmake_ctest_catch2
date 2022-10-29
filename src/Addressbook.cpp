@@ -1,10 +1,14 @@
 
 #include "Addressbook.h"
 
-Addressbook::Addressbook (const std::vector<std::shared_ptr<Person>>& persons)
-    : persons (persons)
+Addressbook::Addressbook()
 {
 
+}
+
+bool Addressbook::init (Loader& loader)
+{
+    return loader.load (persons);
 }
 
 std::string Addressbook::getPhonenumberByName (const std::string& name) const

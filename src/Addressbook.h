@@ -20,13 +20,23 @@ public:
     std::string phonenumber;
 };
 
+class Loader
+{
+    public:
+    virtual bool load(std::vector<std::shared_ptr<Person>>& persons)
+    {
+        ///TODO load from file or load from sqlite3 or the cloud or ....
+    }
+};
+
 class Addressbook
 {
     
 public:
-    Addressbook (const std::vector<std::shared_ptr<Person>>& persons);
+    Addressbook();
+    bool init(Loader& loader);
     std::string getPhonenumberByName (const std::string& name) const;
     
 private:
-    const std::vector<std::shared_ptr<Person>>& persons;
+    std::vector<std::shared_ptr<Person>> persons;
 };

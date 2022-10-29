@@ -9,4 +9,7 @@ add_subdirectory(submodules/Catch2)
 add_subdirectory(submodules/trompeloeil)
 
 add_subdirectory(src)
+target_include_directories(app PUBLIC src/)
+
 add_subdirectory(tests)
+target_include_directories(tests PUBLIC src/ tests/)

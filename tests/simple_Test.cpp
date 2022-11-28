@@ -1,20 +1,24 @@
+
 #include "catch2/catch_all.hpp"
 #include "trompeloeil.hpp"
 
+#include "Output.h"
+
 using namespace trompeloeil;
 
-TEST_CASE("When I multiple a number with itself then I get the sqr value", "[simple]")
+TEST_CASE("When print() is called once, then numWrittenLines() returns 1", "[simple]")
 {
     ///outline
-    auto x = 2;
-    auto expected = 4;
-    
-    ///prepare
-    ///...
+    std::string oneLine = "one line that we print";
+    int numLinesWrittenExpected = 1;
 
-    ///exercise
-    auto actual = x * x;
+    ///prepare
+    Output output;
     
+    ///exercise
+    output.print(oneLine);
+    auto numLinesWrittenActual = output.numLinesWritten();
+
     ///evaluate
-    REQUIRE(actual == expected);
+    REQUIRE(numLinesWrittenExpected == numLinesWrittenActual);
 }

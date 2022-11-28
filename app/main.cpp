@@ -1,8 +1,14 @@
-#include <iostream>
+#include "Output.h"
+#include "HelloWorld.h"
 
 int main (int argc, char **argv)
 {
-    std::cout << "hello world" << std::endl;
+    Output output;
+    HelloWorld helloWorld(output);
+    
+    auto str = helloWorld.createString();
+    helloWorld.displayString(str);
+
     return 0;
 }
 

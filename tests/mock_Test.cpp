@@ -1,26 +1,33 @@
+
 #include "catch2/catch_all.hpp"
 #include "trompeloeil.hpp"
 
+#include "Output.h"
+#include "HelloWorld.h"
+
 using namespace trompeloeil;
 
-struct Mock
+class OutputMock : public Output
 {
-    MAKE_MOCK0 (func, bool());
+public:
+    MAKE_MOCK1 (print, void (const std::string& str), override);
 };
 
 TEST_CASE ("When mocking, then I can call the mock and it returns the mocked value", "mocking")
 {
     ///outline
-    auto expected = true;
+
     
     ///prepare
-    Mock mock;
-    ALLOW_CALL(mock, func())
-        .RETURN(expected);
+    OutputMock output;
+    REQUIRE_CALL(output, print("hello world"));
     
     ///exercise
-    auto actual = mock.func();
+    HelloWorld helloWorld(output);
+    
+    auto str = helloWorld.createString();
+    helloWorld.displayString(str);
         
     ///evaluate
-    REQUIRE(actual == expected);
+
 }

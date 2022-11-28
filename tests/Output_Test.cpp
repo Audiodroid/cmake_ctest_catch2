@@ -6,7 +6,7 @@
 
 using namespace trompeloeil;
 
-TEST_CASE("When print() is called once, then numWrittenLines() returns 1", "[simple]")
+TEST_CASE("When print() is called once, then numWrittenLines() returns 1", "Output")
 {
     ///outline
     std::string oneLine = "one line that we print";

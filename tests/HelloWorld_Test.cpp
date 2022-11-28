@@ -2,32 +2,24 @@
 #include "catch2/catch_all.hpp"
 #include "trompeloeil.hpp"
 
-#include "Output.h"
+#include "OutputMock.h"
 #include "HelloWorld.h"
 
 using namespace trompeloeil;
 
-class OutputMock : public Output
-{
-public:
-    MAKE_MOCK1 (print, void (const std::string& str), override);
-};
-
-TEST_CASE ("When mocking, then I can call the mock and it returns the mocked value", "mocking")
+TEST_CASE ("When createString and displayString is called, then helloWorld calls print('hello world') from Output", "HelloWorld")
 {
     ///outline
-
-    
-    ///prepare
     OutputMock output;
     REQUIRE_CALL(output, print("hello world"));
     
-    ///exercise
+    ///prepare
     HelloWorld helloWorld(output);
     
+    ///exercise  
     auto str = helloWorld.createString();
     helloWorld.displayString(str);
         
     ///evaluate
-
+    ///see above, call required
 }
